@@ -24,13 +24,14 @@ def utf7_encode(s):
 imap_host = 'outlook.office365.com'
 username = 'username@example.com'
 password = 'xxxxxxxx'
+mailbox = '送信済みアイテム'
 
 # メールサーバーに接続
 imap = imaplib.IMAP4_SSL(imap_host)
 imap.login(username, password)
 
 # 受信ボックスを選択
-imap.select(utf7_encode('送信済みアイテム'))
+imap.select(utf7_encode(mailbox))
 
 # 今日送信したメールを取得
 typ, list = imap.search(None, '(ON {0})'.format(time.strftime('%d-%b-%Y')))
